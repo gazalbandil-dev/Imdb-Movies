@@ -1,11 +1,13 @@
+import './tailwind.css';
+import Home from "./pages/Home"
 
-import './App.css';
 
 function App() {
+
   return (
-    <div className="App">
-      <h1>Gazal Bandil</h1>
-    </div>
+    <>
+    <Home/>
+    </>
   );
 }
 
