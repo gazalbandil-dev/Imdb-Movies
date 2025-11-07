@@ -1,14 +1,22 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Input} from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { useDebounce } from '../hooks/useDebounce';
 
 const {Search} = Input;
 
 const NavigationBar = ({onSearch}) => {
   const [query,setQuery] = useState("");
+  const debouncedValue = useDebounce(query);
   
+  //caling parents onsearch when debounced value changes
+   useEffect(() => {
+    console.log(debouncedValue);
+    onSearch(debouncedValue);
+  }, [debouncedValue, onSearch]);
 
+ 
   return (
     <div className="nav-container flex items-center justify-between p-4 bg-gray-800 text-white">
       <div className="logo text-2xl font-bold">
@@ -18,10 +26,10 @@ const NavigationBar = ({onSearch}) => {
         <Search
           placeholder='Search Movies...'
           allowClear
-          enterButton="Search"
           size="middle"
+          minLength="3"
+          value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onSearch={onSearch(query)}
           />
       </div>
       <div className="wishlist-container flex items-center gap-2 cursor-pointer">
