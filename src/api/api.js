@@ -6,16 +6,25 @@ const allMovies = async () => {
     return postData;
 };
 const searchByTitle = async (query) => {
-      const BaseUrl = "https://omdbapi.com/?apikey=2770b6b7&s=";
-      const searchUrl = `${BaseUrl}${query}`;
-      const response = await fetch(searchUrl);
-      const data = await response.json();
+    const BaseUrl = "https://omdbapi.com/?apikey=2770b6b7&s=";
+    const searchUrl = `${BaseUrl}${query}`;
+    const response = await fetch(searchUrl);
+    const data = await response.json();
 
-      if(data.Response === "False"){
+    if (data.Response === "False") {
         throw new Error(data.Error);
-      }
-      return data.Search;
+    }
+    return data.Search;
 };
 
-export {allMovies,searchByTitle};
+const movieById = async (movieId) => {
+    const BaseUrl = "https://omdbapi.com/?apikey=2770b6b7&i=";
+    const searchUrl = `${BaseUrl}${movieId}`;
+    const response = await fetch(searchUrl);
+    const data = await response.json();
+    return data;
+
+}
+
+export { allMovies, searchByTitle, movieById };
 
