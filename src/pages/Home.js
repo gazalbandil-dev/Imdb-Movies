@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { allMovies, movieById } from '../api/api'
+import { getAllMovies, movieById } from '../api/api'
 import { Carousel } from "antd";
 import Card from "../component/Card"
 import PopupCard from '../component/PopupCard';
@@ -11,8 +11,8 @@ const Home = () => {
     const [showPopup, setShowPopup] = useState(false);
     // //for get all the movies data
     const { data: allMoviesData, isLoading: loadingAll, isError: errorAll, error: allError, status } = useQuery({
-        queryKey: ["posts"],
-        queryFn: allMovies,
+        queryKey: ["movies"],
+        queryFn: getAllMovies,
     });
 
     // for popup mobie by Id
@@ -69,23 +69,24 @@ const Home = () => {
                 <div className=" justify-start mx-[1rem] mt-[3rem] ">
                     <h2 className="font-bold text-2xl text-white font-inter">Movies</h2>
                 </div>
-                <div class="w-full h-0.5 bg-gray-300/40 blur-6 mt-4"></div>
+                <div className="w-full h-0.5 bg-gray-300/40 blur-6 mt-4"></div>
 
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mx-auto items-center mt-8">
-                    {allMoviesData?.map((post) => (
-                        <Card
-                            key={post.imdbID}
-                            id={post.imdbID}
-                            title={post.Title}
-                            image={post.Poster}
-                            type={post.Type}
-                            year={post.Year}
-                            onClick={() => handleCardClick(post.imdbID)}
-                        />
-                    ))}
+                <div className="flex overflow-x-auto mt-8 ">
+                    <div className="flex gap-8">
+                        {allMoviesData?.map((post) => (
+                            <Card
+                                key={post.imdbID}
+                                id={post.imdbID}
+                                title={post.Title}
+                                image={post.Poster}
+                                type={post.Type}
+                                year={post.Year}
+                                onClick={() => handleCardClick(post.imdbID)}
+                            />
+                        ))}
+                    </div>
                 </div>
-
 
                 {showPopup && selectedMovie && movieData && (
                     <PopupCard
