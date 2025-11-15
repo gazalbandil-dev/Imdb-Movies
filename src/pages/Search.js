@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Spin, Pagination } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import React, { useState } from 'react'
-import { allMovies, searchByTitle, movieById, searchByJoker } from '../api/api'
+import { searchByTitle, movieById, searchByJoker } from '../api/api'
 import Card from "../component/Card"
 import PopupCard from '../component/PopupCard';
 import notfound from '../assests/notfound.png';
@@ -14,7 +14,6 @@ const Search = ({ searchQuery }) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
-
   const [currentPage, setCurrentPage] = useState(1);
  
 
@@ -22,7 +21,12 @@ const Search = ({ searchQuery }) => {
   const { data: allMoviesData, isLoading: loadingAll, isError: errorAll, error: allError, status } = useQuery({
     queryKey: ["posts", currentPage],
     queryFn: () => searchByJoker(currentPage),
-   
+    enabled: !searchQuery,
+    retry:false,
+    onError: (error) => {
+    console.error("Error occurred during API request", error);
+  }
+
   });
 
   //for search ny title 
@@ -42,16 +46,12 @@ const Search = ({ searchQuery }) => {
     enabled: !!selectedMovie,
 
   })
-
-  const displayData = searchQuery ? searchedData:allMoviesData;
+  const searchMovie = searchedData?.Search || [];
+  const totalMovie = Number(searchedData?.totalResults || allMoviesData?.totalResults || 0);
+  const displayData = searchQuery ? searchMovie : allMoviesData?.Search || [];
   const isLoading = loadingAll || loadingSearch;
   const isError = errorAll || errorSearch;
   const hasNoResults = !isLoading && isError && !displayData ;
-
-  // const totalResults = displayData?.totalResults || 0;
-  // const pageSize = 10;
-  
-
 
   const handleCardClick = (movieId) => {
     setSelectedMovie(movieId);
@@ -71,7 +71,7 @@ const Search = ({ searchQuery }) => {
 
   return (
   <div className="min-h-screen bg-gradient-to-b from-gray-900 to-cyan-900 flex flex-col py-10 px-4 text-white">
-    {isLoading ? (
+    {isLoading? (
       <div className="flex justify-center items-center h-[70vh]">
         <Spin size="large" />
       </div>
@@ -99,7 +99,7 @@ const Search = ({ searchQuery }) => {
           </div>
         ) : (
           <>
-           
+          
             {Array.isArray(displayData) && displayData.length > 0 && (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 justify-items-center mt-8">
                 {displayData.map((post) => (
@@ -115,17 +115,17 @@ const Search = ({ searchQuery }) => {
                 ))}
               </div>
             )}
-            {/* {displayData.length > 0 && (
+            
               <Pagination
                 current={currentPage}
-                pageSize={pageSize}
-                total={totalResults}
+                pageSize={10}
+                total={totalMovie}
                 align="center"
                 onChange={(page) => setCurrentPage(page)}
                 style={{ marginTop: 20, textAlign: "center" }}
                 showSizeChanger={false}
               />
-            )} */}
+            
           </>
         )}
       </>
