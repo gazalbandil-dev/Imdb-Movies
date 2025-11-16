@@ -44,7 +44,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-
       <div className="w-full relative">
         <Carousel autoplay effect="fade" arrows autoplaySpeed={3000}>
           {images.map((src, i) => (
@@ -67,7 +66,7 @@ const Home = () => {
       <div className=" justify-start mx-[1rem] mt-[3rem] ">
         {/* <h2 className="font-bold text-2xl text-white font-inter">Movies</h2> */}
          <h2 className="font-bold text-2xl tracking-wide">Trending Movies</h2>
-         <div className="mt-1 w-20 h-1 bg-cyan-400/80 rounded-full"></div>
+         <div className="mt-1 w-[] h-1 bg-cyan-400/80 rounded-full"></div>
 
       </div>
       {/* <div className="w-full h-0.5 bg-gray-300/40 blur-6 mt-4"></div> */}

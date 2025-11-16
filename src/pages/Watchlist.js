@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeartFilled, ArrowLeftOutlined } from "@ant-design/icons";
+import { HeartFilled} from "@ant-design/icons";
 import { useSelector } from 'react-redux';
 import Card from '../component/Card';
 import { useNavigate } from 'react-router-dom';
