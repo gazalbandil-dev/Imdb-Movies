@@ -17,9 +17,9 @@ function Card({ id, title, image, type, year, onClick }) {
 
   return (
     <div
-      className="relative text-white rounded-xl overflow-hidden
-                 w-full sm:w-[14rem] md:w-[16rem] lg:w-[15rem]
-                 h-[400px] sm:h-[450px] md:h-[400px]
+      className="relativetext-white rounded-xl overflow-hidden
+                 w-[9rem] sm:w-[11rem] md:w-[13rem] lg:w-[15rem]
+                 h-[240px] sm:h-[300px] md:h-[350px] lg:h-[400px]
                  hover:shadow-xl transition-shadow duration-300 flex flex-col
                  bg-white/10 backdrop-blur-md border border-white/20"
     >
@@ -52,13 +52,13 @@ function Card({ id, title, image, type, year, onClick }) {
         </div>
       </div>
 
-      <div className="p-4 bg-black/20 font-inter text-start space-y-2 rounded-b-lg">
+      <div className="p-2 sm:p-3 md:p-4 bg-black/20 font-inter text-start space-y-2 rounded-b-lg">
         <Tooltip title={title} placement="top" color="dark">
-          <h2 className="text-white text-sm md:text-base font-semibold truncate cursor-pointer">{title}</h2>
+          <h2 className="text-white text-[10px] sm:text-xs md:text-sm lg:text-base font-semibold truncate cursor-pointer">{title}</h2>
         </Tooltip>
         <div className="flex justify-between">
-        <p className="text-white text-sm md:text-sm font-normal truncate cursor-pointer">{year}</p>
-        <p className="text-white text-sm md:text-sm font-normal truncate cursor-pointer capitalize">🎬 {type}</p>
+        <p className="text-white text-[8px] font-light sm:text-[10px] md:text-xs lg:text-sm truncate cursor-pointer">{year}</p>
+        <p className="text-white text-[8px] font-light sm:text-[10px] md:text-xs lg:text-sm cursor-pointer capitalize">🎬 {type}</p>
         </div>
       </div>
     </div>

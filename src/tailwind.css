@@ -3,21 +3,4 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-@layer components {
-  .card-container {
-    @apply relative bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden w-60 m-4 transform hover:scale-105 transition duration-300;
-  }
-
-  .wishlist {
-     @apply absolute top-3 right-3 bg-gray-800 text-white text-2xl rounded-lg shadow-lg overflow-hidden w-60 m-4 transform hover:scale-105 transition duration-300;
-  }
-
-  .image-container {
-    @apply h-80 w-full overflow-hidden;
-  }
-
-  .data-container {
-    @apply p-4 space-y-1 text-start;
-  }
-}
 

@@ -16,14 +16,6 @@ const Watchlist = () => {
     <div className="min-h-screen  bg-gradient-to-b from-gray-900 to-cyan-900 flex flex-col items-center py-10 px-4 text-white">
      
       <div className="w-full max-w-7xl mb-10">
-        <div className="flex items-center mb-6">
-          <button 
-            onClick={handleClick} 
-            className="p-2 rounded-full transition-all duration-300 hover:bg-cyan-500/20 hover:shadow-cyan-100">
-            <ArrowLeftOutlined className="text-white text-2xl" />
-          </button>
-        </div>
-
         <div className="text-center">
           <h1 className="font-extrabold text-4xl md:text-5xl flex items-center justify-center gap-3">
             Your WishList 
