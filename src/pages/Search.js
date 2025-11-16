@@ -5,14 +5,13 @@ import { searchByTitle, movieById, searchByJoker } from '../api/api'
 import Card from "../component/Card"
 import PopupCard from '../component/PopupCard';
 import notfound from '../assests/notfound.png';
-import { useNavigate } from 'react-router-dom';
+
 
 
 const Search = ({ searchQuery }) => {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
 
 
@@ -31,13 +30,15 @@ const Search = ({ searchQuery }) => {
   //for search ny title 
   const { data: searchedData, isLoading: loadingSearch, isError: errorSearch, error: searchError, status: searchStatus } = useQuery({
     queryKey: ["searchedTitle", searchQuery, currentPage],
-    queryFn: () => searchByTitle(searchQuery, currentPage),
+    queryFn: () => searchByTitle(searchQuery.trim(), currentPage),
     enabled: !!searchQuery,
     keepPreviousData: true,
     retry: false,
+
   });
+  
 
-
+ 
   // for popup mobie by Id
   const { data: movieData, isLoading: loading } = useQuery({
     queryKey: ["movieDetail", selectedMovie],
@@ -50,8 +51,9 @@ const Search = ({ searchQuery }) => {
   const displayData = searchQuery ? searchMovie : allMoviesData?.Search || [];
   const isLoading = loadingAll || loadingSearch;
   const isError = errorAll || errorSearch;
-  const hasNoResults = !isLoading && isError && !displayData;
+  const hasNoResults = !isLoading && isError && displayData.length===0;
 
+ 
   const handleCardClick = (movieId) => {
     setSelectedMovie(movieId);
     setShowPopup(true);
@@ -63,9 +65,6 @@ const Search = ({ searchQuery }) => {
 
   }
 
-  const handleClick = () => {
-    navigate("/");
-  }
 
 
   return (

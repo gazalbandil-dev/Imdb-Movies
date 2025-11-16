@@ -99,7 +99,7 @@ const NavigationBar = ({ onSearch: handleParentSearch }) => {
       <Search
         placeholder="Search Movies..."
         allowClear
-        size="large"
+        size="middle"
         className="rounded-md border-b-2 border-cyan-400 bg-transparent text-white placeholder:text-gray-400"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
