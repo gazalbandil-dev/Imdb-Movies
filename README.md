@@ -64,10 +64,10 @@ src/
 
 # Project Images
 
-(![Home Page](image-1.png))
-![Search Page](image-2.png)
-![Wishlist](image-3.png)
-![Mobile screen Home](image-4.png)
+<img width="1892" height="910" alt="image" src="https://github.com/user-attachments/assets/5076c9d0-1643-4542-b587-8ec86102cce9" />
+<img width="1897" height="902" alt="image" src="https://github.com/user-attachments/assets/b1af4e56-31e7-451d-885f-03e5c3ffb413" />
+<img width="1901" height="912" alt="image" src="https://github.com/user-attachments/assets/82d5eec5-e876-4bd4-8898-c272ba73013c" />
+<img width="596" height="692" alt="image" src="https://github.com/user-attachments/assets/f2f1d101-a8ac-453b-8a62-f85314b4262d" />
 
 # Conclusion
 
