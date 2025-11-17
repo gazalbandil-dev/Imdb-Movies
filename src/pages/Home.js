@@ -18,6 +18,7 @@ const Home = () => {
   const { data: allMoviesData, isLoading: loadingAll, isError: errorAll, error: allError, status } = useQuery({
     queryKey: ["movies"],
     queryFn: getAllMovies,
+    staleTime: 1000*60*5,
   });
 
   // for popup mobie by Id
@@ -25,6 +26,7 @@ const Home = () => {
     queryKey: ["movieDetail", selectedMovie],
     queryFn: () => movieById(selectedMovie),
     enabled: !!selectedMovie,
+    staleTime: 1000*60*5,
 
   })
 
@@ -66,7 +68,7 @@ const Home = () => {
       <div className=" justify-start mx-[1rem] mt-[3rem] ">
 
         <h2 className="font-bold text-2xl tracking-wide">Trending Movies</h2>
-        <div className="mt-1 w-[] h-1 bg-cyan-400/80 rounded-full"></div>
+        <div className="mt-1 w-[10rem] h-1 bg-cyan-400/80 rounded-full"></div>
 
       </div>
 

@@ -6,11 +6,9 @@ import { searchByTitle, movieById, searchByJoker } from '../api/api'
 import Card from "../component/Card"
 import PopupCard from '../component/PopupCard';
 import notfound from '../assests/notfound.png';
-import emogi from '../assests/sunEmogi.png';
 
 
-
-const Search = ({ searchQuery }) => {
+const Search = ({ searchQuery }) => {  // getting the query feom search route
 
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -23,10 +21,12 @@ const Search = ({ searchQuery }) => {
     queryKey: ["posts", currentPage],
     queryFn: () => searchByJoker(currentPage),
     enabled: !searchQuery,
+    staleTime: 1000*60*5,
     retry: false,
     onError: (error) => {
       console.error("Error occurred during API request", error);
     }
+   
 
   });
 
@@ -35,6 +35,7 @@ const Search = ({ searchQuery }) => {
     queryKey: ["searchedTitle", searchQuery, currentPage],
     queryFn: () => searchByTitle(trimmedQuery, currentPage),
     enabled: !!searchQuery,
+    staleTime: 1000*60*5,
     keepPreviousData: true,
     retry: false,
     enabled: trimmedQuery.length > 0,
@@ -47,7 +48,7 @@ const Search = ({ searchQuery }) => {
     queryKey: ["movieDetail", selectedMovie],
     queryFn: () => movieById(selectedMovie),
     enabled: !!selectedMovie,
-
+    staleTime: 1000*60*5,
   })
   const searchMovie = searchedData?.Search || [];
   const totalMovie = Number(searchedData?.totalResults || allMoviesData?.totalResults || 0);

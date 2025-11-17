@@ -4,7 +4,7 @@ import { addMovieToWishlist } from '../redux/wishlistSlice';
 import Noimage from '../assests/Noimage.jpg'
 import { Tooltip } from 'antd';
 
-function Card({ id, title, image, type, year, onClick }) {
+function Card({ id, title, image, type, year, onClick }) {   //onclicks takes the action 
 
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.items);
@@ -24,7 +24,7 @@ function Card({ id, title, image, type, year, onClick }) {
                  bg-white/10 backdrop-blur-md border border-white/20"
     >
       <div
-        onClick={onClick}
+        onClick={onClick} //getting from props onclick handle click for popup
         className="flex-1 cursor-pointer overflow-hidden relative flex justify-center items-center"
       >
         <img
@@ -32,14 +32,14 @@ function Card({ id, title, image, type, year, onClick }) {
           alt={title}
           className="w-full p-3 h-full transition-transform duration-300 hover:scale-105 rounded-lg"
           onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = Noimage;
+            e.target.onerror = null;  // if error comes while loading image it would not create continuos cycle
+            e.target.src = Noimage; //use no image if image not there
           }}
         />
 
         <div
-          onClick={(e) => {
-            e.stopPropagation();
+          onClick={(e) => {  //when clicked this div go tohandle click to add movies to wishlist
+            e.stopPropagation(); // to not bubble or click the parent onclick
             handleClick();
           }}
           className="absolute m-3 top-2 right-2 flex justify-end items-center p-1 bg-white/20 backdrop-blur-sm rounded-full"

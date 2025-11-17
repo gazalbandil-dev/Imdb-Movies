@@ -6,17 +6,17 @@ import { useNavigate } from "react-router-dom";
 
 const { Search } = Input;
 
-const NavigationBar = ({ onSearch: handleParentSearch }) => {
+const NavigationBar = ({ onSearch: handleParentSearch }) => { //passes to app.js navigation component
 
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
-  const debouncedValue = useDebounce(query);
+  const debouncedValue = useDebounce(query);//query goes to debounce
 
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     console.log(debouncedValue);
-    handleParentSearch(debouncedValue);
+    handleParentSearch(debouncedValue); //onsearch parent gets debouced value
   }, [debouncedValue, handleParentSearch]);
 
 

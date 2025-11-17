@@ -8,10 +8,9 @@ export const useDebounce = (value,delay=500)=>{
             setDebounceValue(value);
         },delay);
 
-        return () => clearTimeout(handler);
+        return () => clearTimeout(handler); //timer restarts if the delay time is left and value changes
     },[value,delay]); 
 
     return debounceValue;
-
 
 }

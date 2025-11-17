@@ -2,15 +2,10 @@ import React from 'react';
 import { HeartFilled} from "@ant-design/icons";
 import { useSelector } from 'react-redux';
 import Card from '../component/Card';
-import { useNavigate } from 'react-router-dom';
+
 
 const Watchlist = () => {
-  const wishlist = useSelector((state) => state.wishlist.items);
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/");
-  };
+  const wishlist = useSelector((state) => state.wishlist.items);// reads the items from state
 
   return (
     <div className="min-h-screen  bg-gradient-to-b from-gray-900 to-cyan-900 flex flex-col items-center py-10 px-4 text-white">

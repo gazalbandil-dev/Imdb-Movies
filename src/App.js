@@ -9,13 +9,13 @@ import { Provider } from 'react-redux'
 import Navigation from './component/NavigationBar';
 
 
-
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   return (
     <>
       <Provider store={store}>
-        <Navigation onSearch={setSearchQuery} />
+        {/* manages the query comming from navigation */}
+        <Navigation onSearch={setSearchQuery} />  
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search searchQuery={searchQuery} />} />

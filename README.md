@@ -64,7 +64,7 @@ src/
 
 # Project Images
 
-(![Home Page](image-1.png))
+![Home Page](image-1.png)
 ![Search Page](image-2.png)
 ![Wishlist](image-3.png)
 ![Mobile screen Home](image-4.png)
